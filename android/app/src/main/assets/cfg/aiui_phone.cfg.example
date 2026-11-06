@@ -1,0 +1,96 @@
+/* AIUI Mobile版本参数配置 */
+{
+    /* 登录参数 获取路径：https://console.xfyun.cn/services/multiModel  */
+    "login":{
+        "appid": "YOUR_APPID",
+        "api_secret": "YOUR_API_SECRET",  
+        "key": "YOUR_API_KEY"
+    },
+
+	/* 全局设置 */
+    "global": {
+        "scene": "sos_app",
+        "aiui_ver": "3"  // <-- 极速交互请设为3
+    },
+
+	/* 交互参数 */
+	// "interact_timeout" 交互超时时间，单位：毫秒。取值：[10000, 180000]，10000（默认）
+	// "result_timeout" 结果超时时间，单位：毫秒。取值：5000（默认）
+	"interact": {
+		"interact_timeout": "-1",
+		"result_timeout": "5000"
+	},
+
+	/* 业务相关参数 */
+	// 本地vad参数
+	"vad":{
+		"vad_enable": "1",
+		"engine_type": "evad",
+		"res_type": "assets",
+		"res_path": "vad/evad_16k.jet",
+        "vad_bos": "5000",
+        "vad_eos": "1000",
+        "threshold": "0.6",
+        "vad_output_enable": "1"
+	},
+
+	// 识别（音频输入）参数
+	"iat":{
+		"sample_rate": "16000"
+	},
+
+	"audioparams":{
+	    "pers_param": "{\"appid\":\"\",\"uid\":\"\"}"
+    },
+
+ 	"recorder":{
+ 	    "channel_count": 1,
+ 	    "channel_filter": "0,-1"
+ 	},
+
+	// 唤醒参数
+    "ivw": {
+        "mic_type": "mic1",
+	    "res_type": "assets",
+        "res_path": "ivw/vtn/res.bin"
+    },
+
+	/* 业务流程相关参数 */
+	// 语音业务流程控制
+	"speech":{
+		"data_source": "sdk",
+		"wakeup_mode": "off",
+		"interact_mode": "continuous",
+        "audio_source": 7
+	},
+
+	"tts":{
+        "play_mode":"user",
+        "buffer_time": 0,
+        "data_encoding": "raw",
+        "audio_encoding": "raw",
+        "sample_rate": "16000",
+        "voice_name": "x5_lingxiaoyue_flow"
+    },
+
+    // 传给大模型的参数
+    "cbmparams": {
+        "nlp": {
+            "nlp": {
+                "encoding": "utf8",
+                "compress": "raw",
+                "format": "json"
+            },
+            "sub_scene": "cbm_v45"
+        }
+    },
+
+	/* 日志设置 */
+    "log":{
+        "debug_log": "1",
+        "save_datalog": "0",
+        "datalog_path": "",
+        "datalog_size": 1024,
+        "raw_audio_path": ""
+    }
+}

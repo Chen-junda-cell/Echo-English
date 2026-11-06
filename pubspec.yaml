@@ -1,0 +1,48 @@
+name: echo_english
+description: "Echo English — 录音转英文 / 词块收藏 / AI 情景复现对话"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.5.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+
+  # 状态管理
+  flutter_riverpod: ^2.5.1
+
+  # 本地存储
+  sqflite: ^2.3.3+1
+  path: ^1.9.0
+  path_provider: ^2.1.4
+
+  # 录音
+  record: ^5.1.2
+  permission_handler: ^11.3.1
+
+  # 网络
+  http: ^1.2.2
+  web_socket_channel: ^3.0.1
+  crypto: ^3.0.5
+
+  # 工具
+  intl: ^0.19.0
+  uuid: ^4.5.1
+
+dev_dependencies:
+  flutter_lints: ^6.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+
+# 只保留 Android 的 record 实现：从 pub 缓存裁剪掉 linux/windows/web 平台
+# 与依赖，作为官方 `implements: record` 插件本地引入，避免 record 5.2.1
+# 把 record_linux 0.7.2（缺 startStream、hasPermission 签名过时）拉进依赖图。
+dependency_overrides:
+  record_android:
+    path: packages/record_android_pruned
